@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.exemple.profedam.memory.model.Carta;
+import com.exemple.profedam.memory.model.Partida;
 
 
 /**
@@ -37,11 +38,11 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
             tauler.refrescarTablero();
             int cont=0;
             cont++;
-            if(cont==2 && true) {
+            if(Partida.contarCartasFront()) {
 
                 Handler delay = new Handler();
                 delay.postDelayed(this, 2000);
-                cont=0;
+
             }
         }
     }

@@ -57,4 +57,13 @@ public class Partida {
     public int getNumeroCartes() {
         return numeroCartes;
     }
+
+    public static boolean contarCartasFront (ArrayList<Carta> llistaCartes){
+
+        if(){
+
+        }
+
+        return true;
+    }
 }
