@@ -18,6 +18,7 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
     private MainActivity tauler;
     private Carta cartaOnClick;
     private boolean listenerActive = true;
+    Partida partida = new Partida();
 
     public GeneralListener(MainActivity tauler) {
         this.tauler = tauler;
@@ -37,8 +38,8 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
             this.listenerActive = false;
             tauler.refrescarTablero();
             int cont=0;
-            cont++;
-            if(Partida.contarCartasFront()) {
+
+            if(partida.contarCartasFront()) {
 
                 Handler delay = new Handler();
                 delay.postDelayed(this, 2000);

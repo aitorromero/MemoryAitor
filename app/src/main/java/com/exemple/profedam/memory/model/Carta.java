@@ -18,6 +18,10 @@ public class Carta {
         this.estat = Estat.BACK;
     }
 
+    public Estat getEstat() {
+        return estat;
+    }
+
     public int getFrontImage() {
         return frontImage;
     }

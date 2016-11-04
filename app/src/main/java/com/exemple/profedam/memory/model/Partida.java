@@ -24,6 +24,9 @@ public class Partida {
     private ArrayList<Carta> llistaCartes;
     private int numeroCartes;
 
+    public Partida() {
+    }
+
     public Partida(Integer[] totalCartes, ArrayList<Carta> llistaCartes, int numeroCartes) {
         this.totalCartes = totalCartes;
         this.llistaCartes = llistaCartes;
@@ -50,6 +53,7 @@ public class Partida {
 
     }
 
+
     public ArrayList<Carta> getLlistaCartes() {
         return llistaCartes;
     }
@@ -58,12 +62,16 @@ public class Partida {
         return numeroCartes;
     }
 
-    public static boolean contarCartasFront (ArrayList<Carta> llistaCartes){
-
-        if(){
-
+    public boolean contarCartasFront (){
+        int cont=0;
+        for (Carta carta:getLlistaCartes()) {
+            if(carta.getEstat() == Carta.Estat.BACK){
+                cont+=1;
+                if(cont>1){
+                    return true;
+                }
+            }
         }
-
-        return true;
+        return false;
     }
 }
