@@ -18,7 +18,6 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
     private MainActivity tauler;
     private Carta cartaOnClick;
     private boolean listenerActive = true;
-    Partida partida = new Partida();
 
     public GeneralListener(MainActivity tauler) {
         this.tauler = tauler;
@@ -27,7 +26,7 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         //Solo procesamos clicks si el listener es activo
-
+        Partida partida = tauler.getPartida();
         if(listenerActive) {
 
             Toast.makeText(tauler, "position" + position, Toast.LENGTH_SHORT).show();
