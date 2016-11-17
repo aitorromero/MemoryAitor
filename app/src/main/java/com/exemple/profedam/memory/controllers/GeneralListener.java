@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.exemple.profedam.memory.model.Carta;
 import com.exemple.profedam.memory.model.Partida;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by ALUMNEDAM on 02/02/2016.
@@ -18,6 +20,7 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
     private MainActivity tauler;
     private Carta cartaOnClick;
     private boolean listenerActive = true;
+    private ArrayList<Carta> listaCartasFront;
 
     public GeneralListener(MainActivity tauler) {
         this.tauler = tauler;
@@ -27,6 +30,7 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         //Solo procesamos clicks si el listener es activo
         Partida partida = tauler.getPartida();
+
         if(listenerActive) {
 
             Toast.makeText(tauler, "position" + position, Toast.LENGTH_SHORT).show();
@@ -34,22 +38,29 @@ public class GeneralListener implements AdapterView.OnItemClickListener, Runnabl
 
             cartaOnClick = tauler.getPartida().getLlistaCartes().get(position);
             cartaOnClick.girar();
-            this.listenerActive = false;
+
             tauler.refrescarTablero();
             int cont=0;
+            listaCartasFront = partida.mostrarCartasFront();
 
-            if(partida.contarCartasFront()) {
+            if(listaCartasFront.size()==2 && listaCartasFront.get(0).getFrontImage() != listaCartasFront.get(1).getFrontImage()) {
+                this.listenerActive = false;
 
                 Handler delay = new Handler();
                 delay.postDelayed(this, 2000);
 
+            }else if(listaCartasFront.size()==2){
+                listaCartasFront.get(0).setEstat(Carta.Estat.FIXED);
+                listaCartasFront.get(1).setEstat(Carta.Estat.FIXED);
             }
+
         }
     }
 
     @Override
     public void run() {
-        cartaOnClick.girar();
+        listaCartasFront.get(0).girar();
+        listaCartasFront.get(1).girar();
         tauler.refrescarTablero();
         listenerActive = true;
     }

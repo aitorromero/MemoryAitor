@@ -62,16 +62,29 @@ public class Partida {
         return numeroCartes;
     }
 
-    public boolean contarCartasFront (){
-        int cont=0;
+    /*public boolean esTurnoAcabado (){
+        ArrayList<Carta> listaCartasFront= new ArrayList();
         for (Carta carta:getLlistaCartes()) {
-            if(carta.getEstat() == Carta.Estat.BACK){
-                cont+=1;
-                if(cont>1){
+            if(carta.getEstat() == Carta.Estat.FRONT){
+                listaCartasFront.add(carta);
+                if(listaCartasFront.size()==1){
                     return true;
                 }
             }
         }
         return false;
+    }*/
+
+    public ArrayList<Carta> mostrarCartasFront()
+    {
+        ArrayList<Carta> listaCartasFront= new ArrayList();
+        for (Carta carta:getLlistaCartes()) {
+            if (carta.getEstat() == Carta.Estat.FRONT) {
+                listaCartasFront.add(carta);
+            }
+        }
+        return listaCartasFront;
     }
+
+
 }
